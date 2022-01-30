@@ -1,20 +1,15 @@
+#!/usr/bin/env node
+
 const http = require("http");
 const axios = require('axios');
+const config = require('./config');
+const lights = require('./lights');
+
 //To Get Light Numbers and Auth Tokens See: https://developers.meethue.com/develop/get-started-2/
-const hueToken = "<Hue Auth Token Goes Here>"; //Hue Auth Token
-const hueAddress = "http://10.10.10.95:80"; //Hue IP Address. Example Format: http://10.10.10.95:80
-const lightsArray = { //Light Numbers and Names From Hue API
-    "Bathroom1": 1,
-    "Bathroom2": 2, 
-    "Bathroom3": 3, 
-    "Bathroom4": 4, 
-    "Bedroom1": 7, 
-    "LivingRoom": 8, 
-    "Bedroom2": 11, 
-    "Basement": 12, 
-    "Basement2": 13, 
-    "Bedroom3": 14
-};
+const hueToken = config.config().hueToken; //Hue Auth Token
+const hueAddress = config.config().hueAddress; //Hue IP Address. Example Format: http://10.10.10.95:80
+const lightsArray = lights(); //Comes from lights.js file.
+
 const numberOfLights = 10 //Change this the number of lights you have in lightsArray
 let returnArray = []; //Empty Array to Push Values
 

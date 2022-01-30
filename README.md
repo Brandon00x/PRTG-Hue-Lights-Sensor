@@ -49,7 +49,7 @@ node app.js
 
 ![Configure HTTP Data Sensor](./images/configprtg.png)
 
-10. You should now have a sensor populate with values of 1 (On) or 0 (Off).
+10. You should now have a sensor populated with values of 1 (On) or 0 (Off).
 
 
 
