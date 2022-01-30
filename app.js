@@ -52,6 +52,6 @@ const createServer = async () => {
         res.end();
       })
     })
-    server.listen(8081, () => console.log("Light Status Server Listening on 8081."));
+    server.listen(8082, () => console.log("Light Status Server Listening on 8082."));
 }
 createServer();
