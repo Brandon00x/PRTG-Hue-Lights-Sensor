@@ -25,7 +25,6 @@ const getData = async () => {
           value: data.state.on,
           state: data.state.on,
         };
-        console.log(returnData.value);
         if (returnData.value === true) {
           returnData.value = 1;
           returnData.state = "On";
