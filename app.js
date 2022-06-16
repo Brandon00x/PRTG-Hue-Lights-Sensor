@@ -14,24 +14,33 @@ const numberOfLights = 10; //Change this the number of lights you have in lights
 let returnArray = []; //Empty Array to Push Values
 
 const getData = async () => {
+  returnArray = [];
   let url = `${hueAddress}/api/${hueToken}/lights/`;
-  for (key in lightsArray) {
-    const { data } = await axios.get(url + lightsArray[key]);
-    returnData = { channel: key, value: data.state.on, state: data.state.on };
-    if (returnData.value === true) {
-      returnData.value = 1;
-      returnData.state = "On";
-    } else {
-      returnData.value = 0;
-      returnData.state = "Off";
-    }
+  try {
+    for (key in lightsArray) {
+      const { data } = await axios.get(url + lightsArray[key]);
+      try {
+        returnData = {
+          channel: key,
+          value: data.state.on,
+          state: data.state.on,
+        };
+        console.log(returnData.value);
+        if (returnData.value === true) {
+          returnData.value = 1;
+          returnData.state = "On";
+        } else {
+          returnData.value = 0;
+          returnData.state = "Off";
+        }
+      } catch (err) {
+        console.log(`Light ${lightsArray[key]} was not found. Error: ${err}`);
+      }
 
-    if (returnArray.length >= numberOfLights) {
-      returnArray = [];
-      returnArray.push(returnData);
-    } else {
       returnArray.push(returnData);
     }
+  } catch (err) {
+    console.error(err);
   }
 };
 
